@@ -1,9 +1,10 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
+from django.urls import reverse
 
 
-class PublishedManager(model.Manager):
+class PublishedManager(models.Manager):
     def get_query(self):
         return super.get_queryset().filter(status='published')
 
