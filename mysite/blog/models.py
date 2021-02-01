@@ -6,8 +6,8 @@ from taggit.managers import TaggableManager
 
 
 class PublishedManager(models.Manager):
-    def get_query(self):
-        return super.get_queryset().filter(status='published')
+    def get_queryset(self):
+        return super(PublishedManager, self).get_queryset().filter(status='published')
 
 
 class Post(models.Model):
