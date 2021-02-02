@@ -128,6 +128,6 @@ STATIC_URL = '/static/'
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'testtestmail532@gmail.com'
-EMAIL_HOST_PASSWORD = ''
+EMAIL_HOST_PASSWORD = 'test5876'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
