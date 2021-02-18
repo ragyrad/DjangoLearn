@@ -9,6 +9,8 @@ from django.contrib.auth.decorators import login_required
 from common.decorators import ajax_required
 from .forms import LoginForm, UserRegistraionForm, UserEditForm, ProfileEditForm
 from .models import Profile, Contact
+from actions.utils import create_action
+
 
 def user_login(request):
     if request.method == "POST":
@@ -49,6 +51,7 @@ def register(request):
             # Save the User object
             new_user.save()
             profile = Profile.objects.create(user=new_user)
+            create_action(new_user, 'has created an account')
             return render(request,
                           'account/register_done.html',
                           {'new_user': new_user})
@@ -103,7 +106,8 @@ def user_follow(request):
             user = User.objects.get(id=user_id)
             if action == 'follow':
                 Contact.objects.get_or_create(user_from=request.user,
-                                              user_to=user)      
+                                              user_to=user)   
+                create_action(request.user, 'is following', user)
             else:
                 Contact.objects.filter(user_from=request.user,
                                        user_to=user).delete()
