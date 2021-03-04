@@ -19,3 +19,7 @@ class CourseAdmin(admin.ModelAdmin):
     list_filter = ['created', 'subject']
     search_fields = ['title', 'overview']
     prepopulated_fields = {'slug': ('title',)}
+
+
+# use memcache admin index site
+admin.site.index_template = 'memcache_status/admin_index.html'
